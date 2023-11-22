@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurazione>
+    <database>
+        <servizio>jpub</servizio>
+        <tipo>SERVICE_NAME</tipo>
+        <ipaddress>127.0.0.1</ipaddress>
+        <porta>1521</porta>
+        <username>jpubuser</username>
+        <password>jpub2014pwd</password>
+    </database>
+</configurazione>

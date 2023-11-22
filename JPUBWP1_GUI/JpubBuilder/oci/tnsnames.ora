@@ -1,0 +1,13 @@
+JPUB = (DESCRIPTION = (ADDRESS = (PROTOCOL= TCP)
+    (Host= 192.168.1.17)(Port= 1521))(CONNECT_DATA = (SID = jpub)) )
+	
+JPUBDB1 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.250)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVER = SHARED)
+      (SERVICE_NAME = jpubdb1)
+    )
+  )	

@@ -1,0 +1,295 @@
+SYS := $(shell gcc -dumpmachine)
+GLOBAL_INCLUDE=-I/usr/include/ -I/usr/local/include
+
+ifneq (, $(findstring _64, $(SYS)))
+	GLOBAL_LIB=-L/usr/local/lib64 -L/usr/lib64
+	LIBOCILIB=-lrt -lm  -lc -lnnz10 -lclntsh -locci /usr/lib64/libstdc++.so.5
+	LDLIBS=-L/usr/lib64 -L/lib64
+else
+	GLOBAL_LIB=-L/usr/local/lib -L/usr/lib
+	LIBOCILIB=-lrt -lm  -lc -lnnz10 -lclntsh -locci /usr/lib/libstdc++.so.5
+	LDLIBS=-L/usr/lib -L/lib
+endif
+
+
+OCCI_LIB=-L${ORACLE_HOME}/rdbms/lib/ -L${ORACLE_HOME}/lib/
+
+LOCAL_INCLUDE=-Iinclude/
+
+ORACLEINCLIDEPATH=-I ${ORACLE_HOME}/rdbms/public/
+
+LIBPTHREAD=-lpthread
+
+
+SRC_DIR = ./src/
+EXE_DIR = ./
+
+#CXX = g++
+CXX = sourceanalyzer -b JPUB_JWP1_PRELOADERENG.fpr  -verbose g++
+CXXCPP = g++ -E
+CXXFLAGS = -g -fPIC -pipe -Wall -Werror -rdynamic -D_REENTRANT -fno-rtti #-DLOG4CPP
+
+SOURCES1=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_operations_catalog.cpp \
+	$(SRC_DIR)DBManager.cpp
+
+TARGET1=$(EXE_DIR)jpubwp1_operations_catalog
+
+SOURCES2=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_job_config.cpp \
+	$(SRC_DIR)DBManager.cpp
+
+TARGET2=$(EXE_DIR)jpubwp1_job_config
+
+SOURCES3=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_config.cpp \
+	$(SRC_DIR)DBManager.cpp 
+
+TARGET3=$(EXE_DIR)jpubwp1_config
+
+SOURCES4=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_conditions_catalog.cpp \
+	$(SRC_DIR)DBManager.cpp
+
+
+TARGET4=$(EXE_DIR)jpubwp1_conditions_catalog
+
+SOURCES5=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_job_catalog.cpp \
+	$(SRC_DIR)DBManager.cpp
+
+TARGET5=$(EXE_DIR)jpubwp1_job_catalog
+
+SOURCES6=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_services.cpp \
+	$(SRC_DIR)DBManager.cpp 
+
+TARGET6=$(EXE_DIR)jpubwp1_services
+
+SOURCES7=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_tickets_config.cpp \
+	$(SRC_DIR)DBManager.cpp
+
+TARGET7=$(EXE_DIR)jpubwp1_tickets_config
+
+SOURCES8=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_trend_analysis.cpp \
+	$(SRC_DIR)DBManager.cpp
+
+TARGET8=$(EXE_DIR)jpubwp1_trend_analysis
+
+SOURCES9=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_log.cpp \
+	$(SRC_DIR)DBManager.cpp
+
+TARGET9=$(EXE_DIR)jpubwp1_log
+
+SOURCES10=$(SRC_DIR)JobInstanceBean.cpp \
+	$(SRC_DIR)JPUBWP1_Preloader.cpp \
+	$(SRC_DIR)ParamBean.cpp \
+	$(SRC_DIR)ServiceBean.cpp \
+	$(SRC_DIR)WP1Bean.cpp \
+	$(SRC_DIR)WP1ConditionBean.cpp \
+	$(SRC_DIR)WP1ConfigBean.cpp \
+	$(SRC_DIR)WP1JobBean.cpp \
+	$(SRC_DIR)WP1JobConditionOperation.cpp \
+	$(SRC_DIR)WP1OperationBean.cpp \
+	$(SRC_DIR)WP1TicketBean.cpp \
+	$(SRC_DIR)StringUtil.cpp \
+	$(SRC_DIR)WP1AnalisiTrend.cpp \
+	$(SRC_DIR)WP1Log.cpp \
+	$(SRC_DIR)WP1TicketElab.cpp \
+	$(SRC_DIR)WP1TicketElabDett.cpp \
+	$(SRC_DIR)jpubwp1_ticket_elab.cpp \
+	$(SRC_DIR)DBManager.cpp
+
+TARGET10=$(EXE_DIR)jpubwp1_ticket_elab
+
+all:
+	$(CXX) $(CXXFLAGS) -o $(TARGET1) $(SOURCES1) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET2) $(SOURCES2) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET3) $(SOURCES3) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET4) $(SOURCES4) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET5) $(SOURCES5) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET6) $(SOURCES6) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET7) $(SOURCES7) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET8) $(SOURCES8) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET9) $(SOURCES9) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET10) $(SOURCES10) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+
+trend_analysis:
+	$(CXX) $(CXXFLAGS) -o $(TARGET8) $(SOURCES8) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+
+ticket:
+	$(CXX) $(CXXFLAGS) -o $(TARGET7) $(SOURCES7) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	
+services:
+	$(CXX) $(CXXFLAGS) -o $(TARGET6) $(SOURCES6) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	
+job_catalog:
+	$(CXX) $(CXXFLAGS) -o $(TARGET5) $(SOURCES5) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)	
+	
+condition_catalog:
+	$(CXX) $(CXXFLAGS) -o $(TARGET4) $(SOURCES4) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	
+wp1_config:
+	$(CXX) $(CXXFLAGS) -o $(TARGET3) $(SOURCES3) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	
+job_config:
+	$(CXX) $(CXXFLAGS) -o $(TARGET2) $(SOURCES2) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+	
+operation_catalog:
+	$(CXX) $(CXXFLAGS) -o $(TARGET1) $(SOURCES1) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+
+log:
+	$(CXX) $(CXXFLAGS) -o $(TARGET9) $(SOURCES9) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)	
+
+ticket_elab:
+	$(CXX) $(CXXFLAGS) -o $(TARGET10) $(SOURCES10) $(LOCAL_INCLUDE) $(GLOBAL_INCLUDE) $(ORACLEINCLIDEPATH) $(GLOBAL_LIB) $(LIBPTHREAD) $(LIBOCILIB) $(OCCI_LIB) $(LDLIBS)
+
+clear:
+	rm $(TARGET1);
+	rm $(TARGET2);
+	rm $(TARGET3);
+	rm $(TARGET4);
+	rm $(TARGET5);
+	rm $(TARGET6);
+	rm $(TARGET7);
+	rm $(TARGET8);
+	rm $(TARGET9);
+	rm $(TARGET10); 
